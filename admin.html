@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080808"
+    >
+
+    <title>NFC Review — Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div
+    class="premium-admin"
+    id="dashboard"
+    style="display:none;"
+>
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="premium-brand">
+
+            <div class="brand-mark">
+                N
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    NFC REVIEW
+                </strong>
+
+                <span>
+                    Business Dashboard
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="live-status">
+
+            <span></span>
+
+            LIVE SYSTEM
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="premium-container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-label">
+                NFC REVIEW PLATFORM
+            </div>
+
+            <h1>
+
+                Turn every tap into
+
+                <br>
+
+                <span>
+                    valuable feedback.
+                </span>
+
+            </h1>
+
+            <p>
+
+                Create a premium digital experience
+                for every customer you serve.
+
+            </p>
+
+        </section>
+
+
+        <!-- CREATE BUSINESS -->
+
+        <section class="premium-card">
+
+
+            <div class="card-top">
+
+                <div>
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <h2>
+                        Create Review Page
+                    </h2>
+
+                    <p>
+                        Set up your customer's complete NFC experience.
+                    </p>
+
+                </div>
+
+
+                <div class="card-badge">
+                    NEW BUSINESS
+                </div>
+
+            </div>
+
+
+            <form id="businessForm">
+
+
+                <!-- BUSINESS NAME -->
+
+                <div class="premium-field">
+
+                    <label for="businessName">
+                        BUSINESS NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="businessName"
+                        placeholder="Enter business name"
+                        autocomplete="organization"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGO -->
+
+                <div class="premium-field">
+
+                    <label>
+                        BUSINESS LOGO
+                    </label>
+
+
+                    <label
+                        for="logoFile"
+                        class="premium-upload"
+                    >
+
+                        <div class="upload-circle">
+                            ↑
+                        </div>
+
+
+                        <div class="upload-content">
+
+                            <strong>
+                                Upload business logo
+                            </strong>
+
+                            <span>
+                                PNG, JPG or WEBP
+                            </span>
+
+                        </div>
+
+
+                        <div class="upload-arrow">
+                            →
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="logoFile"
+                            accept="image/png,image/jpeg,image/webp"
+                            hidden
+                        >
+
+                    </label>
+
+
+                    <p
+                        id="fileName"
+                        class="selected-file"
+                    >
+                        No logo selected
+                    </p>
+
+                </div>
+
+
+                <!-- GOOGLE -->
+
+                <div class="premium-field">
+
+                    <label for="googleReviewUrl">
+                        GOOGLE REVIEW LINK
+                    </label>
+
+
+                    <div class="premium-input">
+
+                        <span class="input-icon">
+                            ★
+                        </span>
+
+
+                        <input
+                            type="url"
+                            id="googleReviewUrl"
+                            placeholder="https://g.page/..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <small>
+                        Customers will be directed to Google after preparing their review.
+                    </small>
+
+                </div>
+
+
+                <!-- INSTAGRAM -->
+
+                <div class="premium-field">
+
+                    <label for="instagramUrl">
+                        INSTAGRAM PAGE
+                    </label>
+
+
+                    <div class="premium-input">
+
+                        <span class="input-icon instagram-icon">
+                            ◎
+                        </span>
+
+
+                        <input
+                            type="url"
+                            id="instagramUrl"
+                            placeholder="https://instagram.com/yourbusiness"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small>
+                        Your customer's Instagram page will appear after the review experience.
+                    </small>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="premium-submit"
+                >
+
+                    <span>
+                        CREATE REVIEW PAGE
+                    </span>
+
+                    <strong>
+                        →
+                    </strong>
+
+                </button>
+
+            </form>
+
+
+            <!-- RESULT -->
+
+            <div id="result"></div>
+
+        </section>
+
+
+        <!-- PROCESS -->
+
+        <section class="process">
+
+
+            <div class="process-title">
+                SIMPLE. FAST. NFC.
+            </div>
+
+
+            <div class="process-grid">
+
+
+                <div class="process-item">
+
+                    <span>
+                        01
+                    </span>
+
+                    <h3>
+                        Create
+                    </h3>
+
+                    <p>
+                        Add your business details.
+                    </p>
+
+                </div>
+
+
+                <div class="process-line"></div>
+
+
+                <div class="process-item">
+
+                    <span>
+                        02
+                    </span>
+
+                    <h3>
+                        Connect
+                    </h3>
+
+                    <p>
+                        Attach your unique page to NFC.
+                    </p>
+
+                </div>
+
+
+                <div class="process-line"></div>
+
+
+                <div class="process-item">
+
+                    <span>
+                        03
+                    </span>
+
+                    <h3>
+                        Collect
+                    </h3>
+
+                    <p>
+                        Customers leave genuine feedback.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="premium-footer">
+
+        <span>
+            NFC REVIEW SYSTEM
+        </span>
+
+        <span>
+            © 2026
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- YOUR EXISTING SYSTEM -->
+
+<script src="script.js"></script>
+
+
+<!-- PAYMENT ACCESS CHECK -->
+
+<script>
+
+async function checkAccess() {
+
+    console.log("Checking account access...");
+
+
+    /*
+     * Make sure the Supabase client
+     * from script.js exists.
+     */
+
+    if (
+        typeof supabaseClient === "undefined"
+    ) {
+
+        console.error(
+            "Supabase client was not found."
+        );
+
+        alert(
+            "System error: Supabase could not be loaded."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * STEP 1
+     * Check login
+     */
+
+    const {
+        data: sessionData,
+        error: sessionError
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !sessionData.session
+    ) {
+
+        console.log(
+            "No active session. Redirecting to login."
+        );
+
+        window.location.replace(
+            "login.html"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * STEP 2
+     * Get logged-in user
+     */
+
+    const user =
+        sessionData.session.user;
+
+
+    console.log(
+        "Logged in user:",
+        user.id
+    );
+
+
+    /*
+     * STEP 3
+     * Check user_access
+     */
+
+    const {
+        data: accessData,
+        error: accessError
+    } =
+        await supabaseClient
+            .from("user_access")
+            .select("paid")
+            .eq(
+                "user_id",
+                user.id
+            )
+            .maybeSingle();
+
+
+    /*
+     * STEP 4
+     * Database error
+     */
+
+    if (accessError) {
+
+        console.error(
+            "Payment access error:",
+            accessError
+        );
+
+        alert(
+            "Unable to verify your payment. Please try again."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Payment record:",
+        accessData
+    );
+
+
+    /*
+     * STEP 5
+     * User has not paid
+     */
+
+    if (
+        !accessData ||
+        accessData.paid !== true
+    ) {
+
+        console.log(
+            "Payment not verified. Redirecting to payment."
+        );
+
+        window.location.replace(
+            "payment.html"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * STEP 6
+     * PAYMENT VERIFIED
+     */
+
+    console.log(
+        "PAYMENT VERIFIED — DASHBOARD UNLOCKED"
+    );
+
+
+    document
+        .getElementById("dashboard")
+        .style.display = "block";
+
+}
+
+
+checkAccess();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+
+    <title>NFC Review — Payment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #171717 0%, #080808 45%);
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .payment-container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .brand-mark {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 15px;
+            border: 1px solid #444;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            background: #0d0d0d;
+        }
+
+        .brand h1 {
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+
+        .brand p {
+            color: #777;
+            font-size: 12px;
+            margin-top: 7px;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background: rgba(17, 17, 17, 0.96);
+            border: 1px solid #242424;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
+        }
+
+        .label {
+            color: #777;
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #999;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .price-box {
+            border-top: 1px solid #292929;
+            border-bottom: 1px solid #292929;
+            padding: 22px 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-size: 38px;
+            font-weight: 800;
+        }
+
+        .price span {
+            font-size: 13px;
+            color: #777;
+            font-weight: 400;
+        }
+
+        .one-time {
+            color: #888;
+            font-size: 12px;
+        }
+
+        #paypal-button-container {
+            min-height: 48px;
+            width: 100%;
+        }
+
+        .loading {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            padding: 15px 0;
+        }
+
+        .secure {
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            color: #777;
+            text-decoration: none;
+            font-size: 12px;
+            margin-top: 22px;
+        }
+
+        .back:hover {
+            color: #fff;
+        }
+
+        #message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .success {
+            background: #102015;
+            border: 1px solid #244d30;
+            color: #9ee6ae;
+        }
+
+        .error {
+            background: #241010;
+            border: 1px solid #512222;
+            color: #ffaaaa;
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .product {
+                font-size: 24px;
+            }
+
+            .price {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="payment-container">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+            N
+        </div>
+
+        <h1>NFC REVIEW</h1>
+
+        <p>
+            PREMIUM REVIEW PLATFORM
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="label">
+            ONE-TIME ACCESS
+        </div>
+
+        <div class="product">
+            NFC Review System
+        </div>
+
+        <p class="description">
+            Create your business review page, connect your NFC card,
+            and give customers a premium review experience.
+        </p>
+
+
+        <div class="price-box">
+
+            <div>
+                <div class="price">
+                    $19.99 <span>USD</span>
+                </div>
+            </div>
+
+            <div class="one-time">
+                ONE TIME
+            </div>
+
+        </div>
+
+
+        <div id="paypal-loading" class="loading">
+            Loading secure payment...
+        </div>
+
+        <div id="paypal-button-container"></div>
+
+        <div id="message"></div>
+
+
+        <p class="secure">
+            🔒 Secure one-time payment through PayPal Sandbox
+        </p>
+
+
+        <a href="login.html" class="back">
+            ← Back to login
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- PAYPAL SANDBOX -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAOTk6ws1RHkqZ5_cClZhIU4_dpihOPYkoiJUF5LAq7IDgTN_SQ1tvqV1m2UBiysJiHNnN7hhRhIU2Gmg&currency=USD&intent=capture"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://zkavcbepyykiislrhnze.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_Sce3qe6R5jfLZ-8W4U6HXA_f07s-1L4";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+const message =
+    document.getElementById("message");
+
+const paypalLoading =
+    document.getElementById("paypal-loading");
+
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className = type;
+
+    message.style.display = "block";
+
+}
+
+
+/* CHECK LOGIN */
+
+async function checkLogin() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.auth.getSession();
+
+
+    if (error || !data.session) {
+
+        window.location.replace("login.html");
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* START PAYMENT */
+
+async function startPayment() {
+
+    const loggedIn =
+        await checkLogin();
+
+
+    if (!loggedIn) {
+        return;
+    }
+
+
+    /* Check PayPal */
+
+    if (typeof paypal === "undefined") {
+
+        paypalLoading.textContent =
+            "PayPal could not be loaded. Please refresh the page.";
+
+        showMessage(
+            "PayPal failed to load.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    paypalLoading.style.display =
+        "none";
+
+
+    paypal.Buttons({
+
+        style: {
+
+            layout: "vertical",
+
+            shape: "rect",
+
+            label: "paypal",
+
+            height: 48
+
+        },
+
+
+        /* CREATE PAYPAL ORDER */
+
+        createOrder: async function () {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.functions.invoke(
+                        "paypal-create-order",
+                        {
+                            body: {}
+                        }
+                    );
+
+
+                if (error) {
+
+                    console.error(
+                        "Create order error:",
+                        error
+                    );
+
+                    throw new Error(
+                        error.message ||
+                        "Unable to create PayPal order."
+                    );
+
+                }
+
+
+                if (!data || !data.id) {
+
+                    console.error(
+                        "Invalid order response:",
+                        data
+                    );
+
+                    throw new Error(
+                        "PayPal order was not created."
+                    );
+
+                }
+
+
+                console.log(
+                    "PayPal order created:",
+                    data.id
+                );
+
+
+                return data.id;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Create order failed:",
+                    error
+                );
+
+                showMessage(
+                    "Unable to start PayPal checkout. Please try again.",
+                    "error"
+                );
+
+                throw error;
+
+            }
+
+        },
+
+
+        /* PAYMENT APPROVED */
+
+        onApprove: async function (data) {
+
+            try {
+
+                showMessage(
+                    "Processing your payment...",
+                    "success"
+                );
+
+
+                console.log(
+                    "PayPal order approved:",
+                    data.orderID
+                );
+
+
+                const {
+                    data: result,
+                    error
+                } =
+                    await supabaseClient.functions.invoke(
+                        "paypal-capture-order",
+                        {
+                            body: {
+                                orderID:
+                                    data.orderID
+                            }
+                        }
+                    );
+
+
+                console.log(
+                    "Capture result:",
+                    result
+                );
+
+
+                if (error) {
+
+                    console.error(
+                        "Capture function error:",
+                        error
+                    );
+
+                    throw new Error(
+                        error.message ||
+                        "Payment capture failed."
+                    );
+
+                }
+
+
+                /*
+                    IMPORTANT:
+
+                    Our new capture function returns:
+
+                    success: true
+                    paid: true
+
+                    It does NOT return:
+                    status: "COMPLETED"
+                */
+
+                if (
+                    !result ||
+                    result.success !== true ||
+                    result.paid !== true
+                ) {
+
+                    throw new Error(
+                        result?.error ||
+                        "Payment was not completed."
+                    );
+
+                }
+
+
+                /* PAYMENT SUCCESS */
+
+                showMessage(
+                    "Payment successful! Your account is now unlocked.",
+                    "success"
+                );
+
+
+                console.log(
+                    "ACCOUNT UNLOCKED:",
+                    result
+                );
+
+
+                /* GO TO DASHBOARD */
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "admin.html";
+
+                }, 1500);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Payment completion error:",
+                    error
+                );
+
+
+                showMessage(
+                    "Payment was approved, but we could not complete the payment.",
+                    "error"
+                );
+
+            }
+
+        },
+
+
+        /* CANCEL */
+
+        onCancel: function () {
+
+            showMessage(
+                "Payment cancelled.",
+                "error"
+            );
+
+        },
+
+
+        /* PAYPAL ERROR */
+
+        onError: function (error) {
+
+            console.error(
+                "PayPal error:",
+                error
+            );
+
+
+            showMessage(
+                "Something went wrong with PayPal. Please try again.",
+                "error"
+            );
+
+        }
+
+    }).render(
+        "#paypal-button-container"
+    );
+
+}
+
+
+/* START */
+
+startPayment();
+
+</script>
+
+</body>
+</html>

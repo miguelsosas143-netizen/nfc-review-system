@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0a0a0a"
+    >
+
+    <title>Leave a Review</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =========================================
+         MAIN PAGE
+    ========================================== -->
+
+    <main class="review-page">
+
+        <!-- =====================================
+             CARD
+        ====================================== -->
+
+        <section class="review-card">
+
+
+            <!-- =================================
+                 BRAND / LOGO
+            ================================== -->
+
+            <div class="brand-area">
+
+                <div class="logo-box">
+
+                    <img
+                        id="businessLogo"
+                        class="business-logo"
+                        src=""
+                        alt="Business Logo"
+                    >
+
+                </div>
+
+
+                <div class="brand-content">
+
+                    <div class="small-label">
+                        YOUR EXPERIENCE MATTERS
+                    </div>
+
+                    <h1 id="businessName">
+                        Loading...
+                    </h1>
+
+                    <p class="brand-description">
+                        We'd love to hear what you think.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 DIVIDER
+            ================================== -->
+
+            <div class="divider"></div>
+
+
+            <!-- =================================
+                 RATING
+            ================================== -->
+
+            <section class="rating-section">
+
+                <div class="section-label">
+                    HOW WAS YOUR EXPERIENCE?
+                </div>
+
+
+                <div
+                    class="stars"
+                    id="starRating"
+                    aria-label="Choose your rating"
+                >
+
+                    <button
+                        type="button"
+                        data-rating="1"
+                        aria-label="1 star"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="2"
+                        aria-label="2 stars"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="3"
+                        aria-label="3 stars"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="4"
+                        aria-label="4 stars"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="5"
+                        aria-label="5 stars"
+                    >
+                        ★
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="ratingMessage"
+                    class="rating-message"
+                >
+                    Tap a star to rate your experience.
+                </p>
+
+            </section>
+
+
+            <!-- =================================
+                 REVIEW INPUT
+            ================================== -->
+
+            <section class="review-section">
+
+                <div class="section-header">
+
+                    <div class="section-label">
+                        WRITE YOUR REVIEW
+                    </div>
+
+                    <span
+                        id="characterCount"
+                        class="character-count"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="textarea-wrapper">
+
+                    <textarea
+                        id="customerReview"
+                        placeholder="Tell us about your experience..."
+                        maxlength="500"
+                        rows="6"
+                    ></textarea>
+
+                    <div class="textarea-bottom">
+
+                        <span>
+                            Your feedback helps us improve.
+                        </span>
+
+                        <span>
+                            / 500
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 SUBMIT
+            ================================== -->
+
+            <button
+                id="submitReview"
+                class="primary-button disabled"
+                type="button"
+            >
+
+                <span>
+                    SUBMIT REVIEW
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- =================================
+                 SUCCESS
+            ================================== -->
+
+            <div
+                id="reviewSuccess"
+                class="success-box"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="success-content">
+
+                    <strong>
+                        REVIEW COPIED
+                    </strong>
+
+                    <p>
+                        Your review has been copied. Paste it into Google to finish.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 COPY REVIEW
+            ================================== -->
+
+            <button
+                id="copyReviewButton"
+                class="secondary-button"
+                type="button"
+            >
+
+                <span>
+                    COPY REVIEW
+                </span>
+
+                <span>
+                    ⧉
+                </span>
+
+            </button>
+
+
+            <!-- =================================
+                 GOOGLE
+            ================================== -->
+
+            <button
+                id="openGoogleButton"
+                class="google-button"
+                type="button"
+            >
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                <span>
+                    CONTINUE TO GOOGLE
+                </span>
+
+                <span class="external-icon">
+                    ↗
+                </span>
+
+            </button>
+
+
+            <!-- =================================
+                 INSTAGRAM
+            ================================== -->
+
+            <div
+                id="instagramSection"
+                class="instagram-section"
+            >
+
+                <div class="instagram-line"></div>
+
+                <a
+                    id="instagramButton"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="instagram-link"
+                >
+
+                    <span class="instagram-symbol">
+                        ◎
+                    </span>
+
+                    <span
+                        id="instagramUsername"
+                    >
+                        Instagram
+                    </span>
+
+                    <span class="instagram-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
+                <div class="instagram-line"></div>
+
+            </div>
+
+
+            <!-- =================================
+                 FOOTER
+            ================================== -->
+
+            <footer class="review-footer">
+
+                <span>
+                    POWERED BY
+                </span>
+
+                <strong>
+                    NFC REVIEW
+                </strong>
+
+            </footer>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <div class="toast-icon">
+            ✓
+        </div>
+
+        <p>
+            Review copied
+        </p>
+
+    </div>
+
+
+    <!-- =========================================
+         SUPABASE
+    ========================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

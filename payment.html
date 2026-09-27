@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080808">
-
     <title>NFC Review — Payment</title>
 
     <style>
@@ -67,7 +66,7 @@
             border: 1px solid #242424;
             border-radius: 24px;
             padding: 32px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, .5);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
         }
 
         .label {
@@ -97,7 +96,7 @@
             padding: 22px 0;
             margin-bottom: 25px;
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             justify-content: space-between;
         }
 
@@ -173,7 +172,6 @@
         }
 
         @media (max-width: 480px) {
-
             body {
                 padding: 16px;
             }
@@ -198,7 +196,6 @@
 <div class="payment-container">
 
     <div class="brand">
-
         <div class="brand-mark">
             N
         </div>
@@ -208,9 +205,7 @@
         <p>
             PREMIUM REVIEW PLATFORM
         </p>
-
     </div>
-
 
     <div class="card">
 
@@ -227,9 +222,7 @@
             and give customers a premium review experience.
         </p>
 
-
         <div class="price-box">
-
             <div>
                 <div class="price">
                     $19.99 <span>USD</span>
@@ -239,9 +232,7 @@
             <div class="one-time">
                 ONE TIME
             </div>
-
         </div>
-
 
         <div id="paypal-loading" class="loading">
             Loading secure payment...
@@ -251,44 +242,35 @@
 
         <div id="message"></div>
 
-
         <p class="secure">
             🔒 Secure one-time payment through PayPal
         </p>
-
 
         <a href="login.html" class="back">
             ← Back to login
         </a>
 
     </div>
-
 </div>
-
 
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
-<!-- PAYPAL -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAA836niASrRrCtASYvPj-AUsQd2ltdF2uPlrFLZgsP2cjq7c0KorcQW9SDDBfVYSqdHCeoy4K_LR8pqbA&currency=USD&intent=capture"></script>
-
+<!-- PAYPAL LIVE -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAA836niASrRrCtASYvPj-AUsQd2ltdF2uPlrFLZgsP2cjq7c0KorcQW9SDDBfVYSqdHCeoy4K_LR8pqbA&currency=USD"></script>
 
 <script>
-
 const SUPABASE_URL =
     "https://zkavcbepyykiislrhnze.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_Sce3qe6R5jfLZ-8W4U6HXA_f07s-1L4";
 
-
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
-
 
 const message =
     document.getElementById("message");
@@ -298,18 +280,13 @@ const paypalLoading =
 
 
 function showMessage(text, type) {
-
     message.textContent = text;
-
     message.className = type;
-
     message.style.display = "block";
-
 }
 
 
 /* CHECK LOGIN */
-
 async function checkLogin() {
 
     const {
@@ -317,36 +294,27 @@ async function checkLogin() {
         error
     } = await supabaseClient.auth.getSession();
 
-
     if (error || !data.session) {
-
         window.location.replace("login.html");
-
         return false;
-
     }
 
-
     return true;
-
 }
 
 
 /* START PAYMENT */
-
 async function startPayment() {
 
     const loggedIn =
         await checkLogin();
-
 
     if (!loggedIn) {
         return;
     }
 
 
-    /* Check PayPal */
-
+    /* CHECK PAYPAL */
     if (typeof paypal === "undefined") {
 
         paypalLoading.textContent =
@@ -358,31 +326,23 @@ async function startPayment() {
         );
 
         return;
-
     }
 
 
-    paypalLoading.style.display =
-        "none";
+    paypalLoading.style.display = "none";
 
 
     paypal.Buttons({
 
         style: {
-
             layout: "vertical",
-
             shape: "rect",
-
             label: "paypal",
-
             height: 48
-
         },
 
 
         /* CREATE PAYPAL ORDER */
-
         createOrder: async function () {
 
             try {
@@ -410,7 +370,6 @@ async function startPayment() {
                         error.message ||
                         "Unable to create PayPal order."
                     );
-
                 }
 
 
@@ -424,7 +383,6 @@ async function startPayment() {
                     throw new Error(
                         "PayPal order was not created."
                     );
-
                 }
 
 
@@ -436,9 +394,7 @@ async function startPayment() {
 
                 return data.id;
 
-            }
-
-            catch (error) {
+            } catch (error) {
 
                 console.error(
                     "Create order failed:",
@@ -451,14 +407,11 @@ async function startPayment() {
                 );
 
                 throw error;
-
             }
-
         },
 
 
         /* PAYMENT APPROVED */
-
         onApprove: async function (data) {
 
             try {
@@ -483,8 +436,7 @@ async function startPayment() {
                         "paypal-capture-order",
                         {
                             body: {
-                                orderID:
-                                    data.orderID
+                                orderID: data.orderID
                             }
                         }
                     );
@@ -507,20 +459,13 @@ async function startPayment() {
                         error.message ||
                         "Payment capture failed."
                     );
-
                 }
 
 
                 /*
-                    IMPORTANT:
-
-                    Our new capture function returns:
-
+                    Our capture function returns:
                     success: true
                     paid: true
-
-                    It does NOT return:
-                    status: "COMPLETED"
                 */
 
                 if (
@@ -533,7 +478,6 @@ async function startPayment() {
                         result?.error ||
                         "Payment was not completed."
                     );
-
                 }
 
 
@@ -560,40 +504,32 @@ async function startPayment() {
 
                 }, 1500);
 
-            }
-
-            catch (error) {
+            } catch (error) {
 
                 console.error(
                     "Payment completion error:",
                     error
                 );
 
-
                 showMessage(
                     "Payment was approved, but we could not complete the payment.",
                     "error"
                 );
-
             }
-
         },
 
 
         /* CANCEL */
-
         onCancel: function () {
 
             showMessage(
                 "Payment cancelled.",
                 "error"
             );
-
         },
 
 
         /* PAYPAL ERROR */
-
         onError: function (error) {
 
             console.error(
@@ -601,25 +537,18 @@ async function startPayment() {
                 error
             );
 
-
             showMessage(
                 "Something went wrong with PayPal. Please try again.",
                 "error"
             );
-
         }
 
-    }).render
-        "#paypal-button-container"
-    );
-
+    }).render("#paypal-button-container");
 }
 
 
 /* START */
-
 startPayment();
-
 </script>
 
 </body>
